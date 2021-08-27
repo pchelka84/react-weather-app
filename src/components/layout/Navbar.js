@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Navbar = ({ title, icon }) => {
   return (
@@ -9,4 +10,15 @@ const Navbar = ({ title, icon }) => {
     </nav>
   );
 };
+
+Navbar.defaultProps = {
+  title: "Lightning Weather",
+  icon: "fas fa-bolt",
+};
+
+Navbar.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+};
+
 export default Navbar;
