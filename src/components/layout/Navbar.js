@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Navbar = ({ title, icon }) => {
   return (
-    <nav className='text-center md:flex flex-row justify-between items-center w-full mb-4 px-4 py-4 bg-gray-700 z-50 text-white'>
+    <nav className='text-center md:flex flex-row justify-between items-center w-full mb-12 px-4 py-4 bg-gray-700 z-50 text-white'>
       <h1 className='text-xl font-semibold'>
         <i className={`text-2xl ${icon}`}></i> {title}
       </h1>
