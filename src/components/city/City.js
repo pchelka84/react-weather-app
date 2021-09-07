@@ -102,6 +102,7 @@ class City extends Component {
       main: { temp, feels_like, humidity, temp_max, temp_min },
       sys: { country },
       wind: { speed },
+      clouds,
       weather,
     } = this.props;
 
@@ -144,6 +145,9 @@ class City extends Component {
         </div>
 
         <ul className='bg-gray-50 p-2'>
+          <li className='mb-2'>
+            <strong>Clouds: </strong> {clouds.all} %
+          </li>
           <li className='mb-2'>
             <strong>Wind: </strong> {speed} m/s
           </li>
