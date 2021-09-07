@@ -13,7 +13,7 @@ class App extends Component {
     this.setState({ loading: true });
 
     const res = await axios.get(
-      `https:\\api.openweathermap.org/data/2.5/weather?q=paris&units=imperial&appid=92412bd131720772a9d0537da3f1a53b`
+      `https:\\api.openweathermap.org/data/2.5/weather?q=paris&units=imperial&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`
     );
 
     console.log(res.data);
