@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Navbar from "./components/layout/Navbar";
 import City from "./components/city/City";
+import Search from "./components/city/Search";
 import axios from "axios";
+
+import "./App.css";
 
 class App extends Component {
   state = {
@@ -24,9 +27,10 @@ class App extends Component {
     const { city } = this.state;
 
     return (
-      <div className='font-roboto'>
+      <div className='font-roboto bg-blue-50 bg-opacity-80 h-full'>
         <Navbar title='Lightning Weather' icon='fas fa-cloud-sun' />
         <div className='container mx-auto md:w-2/5 px-4 md:px-8 text-center'>
+          <Search />
           {city && <City {...city} loading={this.state.loading} />}
         </div>
       </div>
