@@ -122,7 +122,7 @@ class City extends Component {
         </div>
         <div className='flex items-center justify-center mb-6'>
           <div className='flex-1 text-right font-semibold text-gray-500 text-4xl'>
-            {parseInt(temp)}°F
+            {parseInt(temp)} °F
           </div>
           <div className='flex-1'>
             {this.state.icons
@@ -135,7 +135,7 @@ class City extends Component {
 
         <div className='flex mb-6'>
           <div className='flex-1 p-2 mr-3'>
-            <strong>Feels like:</strong> {parseInt(feels_like)}°F
+            <strong>Feels like:</strong> {parseInt(feels_like)} °F
           </div>
           <div className='flex-1 p-2 font-bold'>
             <strong>High/Low:</strong> {parseInt(temp_max)}/{parseInt(temp_min)}
@@ -145,10 +145,10 @@ class City extends Component {
 
         <ul className='bg-gray-50 p-2'>
           <li className='mb-2'>
-            <strong>Wind: </strong> {speed}m/s
+            <strong>Wind: </strong> {speed} m/s
           </li>
           <li className='mb-2'>
-            <strong>Humidity: </strong> {humidity}%
+            <strong>Humidity: </strong> {humidity} %
           </li>
         </ul>
       </div>
