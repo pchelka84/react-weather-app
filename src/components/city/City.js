@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Spinner from "../layout/Spinner";
 
 class City extends Component {
   state = {
@@ -104,6 +105,7 @@ class City extends Component {
       wind: { speed },
       clouds,
       weather,
+      loading,
     } = this.props;
 
     const currentCondition = JSON.stringify(
@@ -113,50 +115,55 @@ class City extends Component {
 
     const currentIcon = weather[0].icon;
 
-    return (
-      <div className='mb-6 rounded md:rounded-sm shodow md:shadow-xl pb-8'>
-        <h1 className='text-3xl font-bold text-gray-700 mt-5 mb-8'>
-          {name}, {country}
-        </h1>
-        <div className='text-gray-800 mb-6 bg-gray-50 p-2'>
-          <strong>Right now: {currentCondition}</strong>
-        </div>
-        <div className='flex items-center justify-center mb-6'>
-          <div className='flex-1 text-right font-semibold text-gray-500 text-4xl'>
-            {parseInt(temp)} °F
+    if (loading) {
+      return <Spinner />;
+    } else {
+      return (
+        <div className='mb-6 rounded md:rounded-sm shodow md:shadow-xl pb-8'>
+          <h1 className='text-3xl font-bold text-gray-700 mt-5 mb-8'>
+            {name}, {country}
+          </h1>
+          <div className='text-gray-800 mb-6 bg-gray-50 p-2'>
+            <strong>Right now: {currentCondition}</strong>
           </div>
-          <div className='flex-1'>
-            {this.state.icons
-              .filter((icon) => icon.id === currentIcon)
-              .map((icon) => (
-                <img src={icon.imgUrl} key={icon.id} alt={icon.title} />
-              ))}
+          <div className='flex items-center justify-center mb-6'>
+            <div className='flex-1 text-right font-semibold text-gray-500 text-4xl'>
+              {parseInt(temp)} °F
+            </div>
+            <div className='flex-1'>
+              {this.state.icons
+                .filter((icon) => icon.id === currentIcon)
+                .map((icon) => (
+                  <img src={icon.imgUrl} key={icon.id} alt={icon.title} />
+                ))}
+            </div>
           </div>
-        </div>
 
-        <div className='flex mb-6'>
-          <div className='flex-1 p-2 mr-3'>
-            <strong>Feels like:</strong> {parseInt(feels_like)} °F
+          <div className='flex mb-6'>
+            <div className='flex-1 p-2 mr-3'>
+              <strong>Feels like:</strong> {parseInt(feels_like)} °F
+            </div>
+            <div className='flex-1 p-2 font-bold'>
+              <strong>High/Low:</strong> {parseInt(temp_max)}/
+              {parseInt(temp_min)}
+              °F
+            </div>
           </div>
-          <div className='flex-1 p-2 font-bold'>
-            <strong>High/Low:</strong> {parseInt(temp_max)}/{parseInt(temp_min)}
-            °F
-          </div>
-        </div>
 
-        <ul className='bg-gray-50 p-2'>
-          <li className='mb-2'>
-            <strong>Clouds: </strong> {clouds.all} %
-          </li>
-          <li className='mb-2'>
-            <strong>Wind: </strong> {speed} m/s
-          </li>
-          <li className='mb-2'>
-            <strong>Humidity: </strong> {humidity} %
-          </li>
-        </ul>
-      </div>
-    );
+          <ul className='bg-gray-50 p-2'>
+            <li className='mb-2'>
+              <strong>Clouds: </strong> {clouds.all} %
+            </li>
+            <li className='mb-2'>
+              <strong>Wind: </strong> {speed} m/s
+            </li>
+            <li className='mb-2'>
+              <strong>Humidity: </strong> {humidity} %
+            </li>
+          </ul>
+        </div>
+      );
+    }
   }
 }
 

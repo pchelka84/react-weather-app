@@ -10,12 +10,14 @@ class App extends Component {
   };
 
   async componentDidMount() {
+    this.setState({ loading: true });
+
     const res = await axios.get(
       `https:\\api.openweathermap.org/data/2.5/weather?q=paris&units=imperial&appid=92412bd131720772a9d0537da3f1a53b`
     );
 
     console.log(res.data);
-    this.setState({ city: res.data });
+    this.setState({ city: res.data, loading: false });
   }
 
   render() {
@@ -25,7 +27,7 @@ class App extends Component {
       <div className='font-roboto'>
         <Navbar title='Lightning Weather' icon='fas fa-cloud-sun' />
         <div className='container mx-auto md:w-2/5 px-4 md:px-8 text-center'>
-          {city && <City {...city} />}
+          {city && <City {...city} loading={this.state.loading} />}
         </div>
       </div>
     );
