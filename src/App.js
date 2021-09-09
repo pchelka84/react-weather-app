@@ -27,7 +27,7 @@ class App extends Component {
     const { city } = this.state;
 
     return (
-      <div className='font-roboto bg-blue-50 bg-opacity-80 h-full'>
+      <div className='font-roboto bg-blue-50 bg-opacity-40 h-full'>
         <Navbar title='Lightning Weather' icon='fas fa-cloud-sun' />
         <div className='container mx-auto md:w-2/5 px-4 md:px-8 text-center'>
           <Search />
