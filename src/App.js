@@ -12,16 +12,15 @@ class App extends Component {
     loading: false,
   };
 
-  async componentDidMount() {
-    this.setState({ loading: true });
-
+  // Search City
+  searchCity = async (text) => {
     const res = await axios.get(
-      `https:\\api.openweathermap.org/data/2.5/weather?q=paris&units=imperial&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`
+      `https:\\api.openweathermap.org/data/2.5/weather?q=${text}&units=imperial&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`
     );
 
     console.log(res.data);
     this.setState({ city: res.data, loading: false });
-  }
+  };
 
   render() {
     const { city } = this.state;
@@ -30,7 +29,7 @@ class App extends Component {
       <div className='font-roboto bg-blue-50 bg-opacity-40 h-full'>
         <Navbar title='Lightning Weather' icon='fas fa-cloud-sun' />
         <div className='container mx-auto md:w-2/5 px-4 md:px-8 text-center'>
-          <Search />
+          <Search searchCity={this.searchCity} />
           {city && <City {...city} loading={this.state.loading} />}
         </div>
       </div>
