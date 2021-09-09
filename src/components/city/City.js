@@ -119,8 +119,8 @@ class City extends Component {
       return <Spinner />;
     } else {
       return (
-        <div className='mb-6 rounded md:rounded-sm shodow md:shadow-xl pb-8'>
-          <h1 className='text-3xl font-bold text-gray-700 mt-5 mb-8'>
+        <div className='bg-white border border-gray-200 pb-4 mb-2'>
+          <h1 className='text-3xl font-bold text-gray-700 mt-5 mb-8 pt-3'>
             {name}, {country}
           </h1>
           <div className='text-gray-800 mb-6 bg-gray-50 p-2'>
