@@ -8,6 +8,8 @@ export class Search extends Component {
 
   static propTypes = {
     searchCity: PropTypes.func.isRequired,
+    clearCity: PropTypes.func.isRequired,
+    showClearIcon: PropTypes.bool.isRequired,
   };
 
   onChange = (e) => {
@@ -21,26 +23,33 @@ export class Search extends Component {
   };
 
   render() {
+    const { clearCity, showClearIcon } = this.props;
     return (
       <div>
-        <form
-          onSubmit={this.onSubmit}
-          className='flex justify-center lg:border border-gray-200 bg-white p-4 mb-4'
-        >
+        <form onSubmit={this.onSubmit} className='flex justify-center py-4'>
           <input
             type='text'
             name='text'
             placeholder='Enter City...'
             value={this.state.text}
             onChange={this.onChange}
-            className='bg-gray-100 outline-none rounded-l-md border-2 border-gray-200 focus:ring focus:ring-blue-400 focus:border-none placeholder-gray-500 focus:placeholder-blue-400 p-2 ml-2'
+            className='blok w-full bg-gray-100 outline-none border border-gray-200 focus:border-blue-400 placeholder-gray-500 focus:placeholder-blue-400 p-2'
           />
           <input
             type='submit'
             value='Search'
-            className='appearance-none bg-blue-500 hover:bg-blue-700 text-white rounded-r-md p-2 px-4 mr-2'
+            onSubmit={this.onSubmit}
+            className='appearance-none bg-blue-500 hover:bg-blue-700 text-white p-2 px-4'
           />
         </form>
+        {showClearIcon && (
+          <button
+            className='bg-gray-600 text-white w-full p-2 mb-3'
+            onClick={clearCity}
+          >
+            Clear
+          </button>
+        )}
       </div>
     );
   }

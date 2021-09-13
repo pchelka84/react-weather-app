@@ -23,15 +23,24 @@ class App extends Component {
     this.setState({ city: res.data, loading: false });
   };
 
+  // Clear City from state
+  clearCity = () => {
+    this.setState({ city: null, loading: false });
+  };
+
   render() {
-    const { city } = this.state;
+    const { city, loading } = this.state;
 
     return (
       <div className='font-roboto bg-blue-50 bg-opacity-40 h-full'>
         <Navbar title='Lightning Weather' icon='fas fa-cloud-sun' />
-        <div className='container mx-auto md:w-2/5 px-4 md:px-8 text-center'>
-          <Search searchCity={this.searchCity} />
-          {city && <City {...city} loading={this.state.loading} />}
+        <div className='mx-auto md:w-2/5 px-4 md:px-8 text-center'>
+          <Search
+            searchCity={this.searchCity}
+            clearCity={this.clearCity}
+            showClearIcon={city ? true : false}
+          />
+          {city && <City {...city} loading={loading} />}
         </div>
       </div>
     );
