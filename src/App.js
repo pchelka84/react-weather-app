@@ -26,7 +26,7 @@ class App extends Component {
     } catch (err) {
       console.log(`Error: ${err}`);
       this.setState({
-        error: "Please enter a location or try again later.",
+        error: "Please enter a different location.",
       });
 
       setTimeout(() => {
