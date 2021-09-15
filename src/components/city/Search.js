@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 export class Search extends Component {
@@ -25,8 +25,8 @@ export class Search extends Component {
   render() {
     const { clearCity, showClearIcon } = this.props;
     return (
-      <div>
-        <form onSubmit={this.onSubmit} className='flex justify-center py-4'>
+      <Fragment>
+        <form onSubmit={this.onSubmit} className='flex justify-center py-2'>
           <input
             type='text'
             name='text'
@@ -50,7 +50,7 @@ export class Search extends Component {
             Clear
           </button>
         )}
-      </div>
+      </Fragment>
     );
   }
 }

@@ -121,15 +121,17 @@ class City extends Component {
       return <Spinner />;
     } else {
       return (
-        <div className='bg-white border border-gray-200 pb-4 mb-2'>
-          <h1 className='text-3xl font-bold text-gray-700 mt-5 mb-8 pt-3'>
+        <div className='bg-white border border-gray-200 pb-8 mb-2'>
+          <h1 className='text-xl font-bold text-gray-700 mt-3 mb-4 pt-2'>
             {name}, {country}
           </h1>
-          <div className='text-gray-800 mb-6 bg-gray-50 p-2'>
-            <strong>Right now: {currentCondition}</strong>
+          <div className='text-gray-800 mb-2 bg-gray-50 text-sm'>
+            <strong>
+              Right now: {currentCondition}, feels like {parseInt(feels_like)}°F
+            </strong>
           </div>
-          <div className='flex items-center justify-center mb-6'>
-            <div className='flex-1 text-right font-semibold text-gray-500 text-4xl'>
+          <div className='flex items-center justify-center mb-2'>
+            <div className='flex-1 text-right font-semibold text-gray-500 text-2xl'>
               {parseInt(temp)} °F
             </div>
             <div className='flex-1'>
@@ -141,37 +143,32 @@ class City extends Component {
             </div>
           </div>
 
-          <div className='flex mb-6'>
-            <div className='flex-1 p-2 mr-3'>
-              <strong>Feels like:</strong> {parseInt(feels_like)} °F
-            </div>
-            <div className='flex-1 p-2 font-bold'>
+          <div className='flex justify-start mb-2 text-sm'>
+            <div className='flex-1 p-1 mr-3'>
               <strong>High/Low:</strong> {parseInt(temp_max)}/
               {parseInt(temp_min)}
               °F
             </div>
+            <div className='flex-1 p-1 font-bold'>
+              <strong>Clouds:</strong> {clouds.all}%
+            </div>
           </div>
 
-          <ul className='bg-gray-50 p-2 mb-4'>
-            <li className='mb-2'>
-              <strong>Clouds: </strong> {clouds.all} %
-            </li>
-            <li className='mb-2'>
-              <strong>Wind: </strong> {speed} m/s
-            </li>
-            <li className='mb-2'>
-              <strong>Humidity: </strong> {humidity} %
-            </li>
-          </ul>
-
-          <div>
-            <Link
-              to={`/city/${lon}&${lat}`}
-              className='bg-gray-600 text-white w-full p-2 mb-3'
-            >
-              Detailed Forecast
-            </Link>
+          <div className='flex bg-gray-50 p-2 mb-6 text-sm md:mb-10'>
+            <div className='flex-1 mb-1'>
+              <strong>Wind: </strong> {speed}m/s
+            </div>
+            <div className='flex-1 mb-1'>
+              <strong>Humidity: </strong> {humidity}%
+            </div>
           </div>
+
+          <Link
+            to={`/city/${lon}&${lat}`}
+            className='bg-gray-600 text-white py-3 px-6 mb-10'
+          >
+            Detailed Forecast
+          </Link>
         </div>
       );
     }
