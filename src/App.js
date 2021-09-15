@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import City from "./components/city/City";
+import DetailedForecast from "./components/city/DetailedForecast";
 import Search from "./components/city/Search";
 import ErrorAlert from "./components/layout/ErrorAlert";
 import About from "./components/pages/About";
@@ -12,6 +13,7 @@ import "./App.css";
 class App extends Component {
   state = {
     city: null,
+    detailedForecast: {},
     loading: false,
     error: null,
   };
@@ -37,13 +39,24 @@ class App extends Component {
     }
   };
 
+  // Get detailed forecast
+  getDetailedForecast = async (lon, lat) => {
+    this.setState({ loading: true });
+
+    const res = await axios.get(
+      `https:\\api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude={current,minutely,hourly}&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`
+    );
+
+    this.setState({ detailedForecast: res.data, loading: false });
+  };
+
   // Clear City from state
   clearCity = () => {
     this.setState({ city: null, loading: false });
   };
 
   render() {
-    const { city, loading, error } = this.state;
+    const { city, loading, error, detailedForecast } = this.state;
 
     return (
       <Router>
@@ -67,6 +80,18 @@ class App extends Component {
                 )}
               />
               <Route exact path='/about' component={About} />
+              <Route
+                exact
+                path='/city/:lon&:lat'
+                render={(props) => (
+                  <DetailedForecast
+                    {...props}
+                    getDetailedForecast={this.getDetailedForecast}
+                    detailedForecast={detailedForecast}
+                    loading={loading}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </div>

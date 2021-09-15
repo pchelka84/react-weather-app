@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Spinner from "../layout/Spinner";
+import { Link } from "react-router-dom";
 
 class City extends Component {
   state = {
@@ -106,6 +107,7 @@ class City extends Component {
       clouds,
       weather,
       loading,
+      coord: { lon, lat },
     } = this.props;
 
     const currentCondition = JSON.stringify(
@@ -150,7 +152,7 @@ class City extends Component {
             </div>
           </div>
 
-          <ul className='bg-gray-50 p-2'>
+          <ul className='bg-gray-50 p-2 mb-4'>
             <li className='mb-2'>
               <strong>Clouds: </strong> {clouds.all} %
             </li>
@@ -161,6 +163,15 @@ class City extends Component {
               <strong>Humidity: </strong> {humidity} %
             </li>
           </ul>
+
+          <div>
+            <Link
+              to={`/city/${lon}&${lat}`}
+              className='bg-gray-600 text-white w-full p-2 mb-3'
+            >
+              Detailed Forecast
+            </Link>
+          </div>
         </div>
       );
     }
